@@ -6,28 +6,25 @@ import numpy as np
 # Reading Training file.
 data = pd.read_csv("training_data.tsv", delimiter = '\t', encoding = 'utf-8')
 len(data)
-# Checking out any random sentence from the training data-set
+
 sentence = data['sent'][27]
 sentence
 
 from textblob import TextBlob
 
-# Textblob has ready-made function to extract noun-phrases.
 print ("TEXTBLOB")
 blob = TextBlob(sentence)
 
 for np in blob.noun_phrases:
     print (np)
-    
-# Tokenizing sentence into individual words
+   
 tokens = nltk.word_tokenize(sentence)
 tokens
 
-# for each word a tag is assinged
+
 tagged = nltk.pos_tag(tokens)
 tagged
 
-# Nouns and Verb type words can be considered as "important words"
 Imp_words = [w[0] for w in tagged if w[1].startswith('N') or w[1].startswith('V')]
 Imp_words
 
@@ -92,13 +89,12 @@ print(sentence,"\n")
 print("Phrase  :   ", calculate(sentence))
 
 
-# Reading file line by line 
+
 with open("eval_data.txt", 'r+') as f:
     lines = [line.rstrip('\n') for linein f]
     
 print (lines[67])
 
-### Create new file 'result.txt' to store result
 
 with open('result.csv', mode='w', newline='') as csv_file:
     fieldnames = ['sent', 'label']
