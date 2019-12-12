@@ -1,4 +1,3 @@
-# Phrase-detection
 import nltk
 import csv
 import pandas as pd
@@ -6,36 +5,26 @@ import numpy as np
 # Reading Training file.
 data = pd.read_csv("training_data.tsv", delimiter = '\t', encoding = 'utf-8')
 len(data)
-
 sentence = data['sent'][27]
 sentence
-
 from textblob import TextBlob
-
 print ("TEXTBLOB")
 blob = TextBlob(sentence)
-
 for np in blob.noun_phrases:
     print (np)
-   
 tokens = nltk.word_tokenize(sentence)
 tokens
-
-
 tagged = nltk.pos_tag(tokens)
 tagged
-
 Imp_words = [w[0] for w in tagged if w[1].startswith('N') or w[1].startswith('V')]
 Imp_words
-
 from nltk.util import ngrams
-
 n=5
 for i in range(1,n+1):
     output = list(ngrams(tokens, i))
     print (output,"\n")
     
-# Function which takes a sentence as an input and returns phrase
+   # Function which takes a sentence as an input and returns phrase
 
 def calculate(sentence):
     
